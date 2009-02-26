@@ -1,7 +1,7 @@
 module SprocketsApplication
   class << self
     def routes(map)
-      map.resource(:sprockets)
+      map.resource(:sprockets, :only => :show)
     end
     
     def source
