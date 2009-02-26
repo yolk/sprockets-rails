@@ -13,7 +13,7 @@ module SprocketsMechanism
 
   protected
     def secretary
-      @secretary ||= Sprockets::Secretary.new(configuration.merge(:root => RAILS_ROOT))
+      @secretary ||= Sprockets::Secretary.new(configuration.merge(:root => Rails.root))
     end
   
     def configuration
@@ -21,7 +21,7 @@ module SprocketsMechanism
     end
 
     def load_configuration(key = :default)
-      conf = YAML.load(IO.read(File.join(RAILS_ROOT, "config", "sprockets.yml"))) || {}
+      conf = YAML.load(IO.read(File.join(Rails.root, "config", "sprockets.yml"))) || {}
       if conf[key]
         conf[key]
       elsif conf.any? { |k, v| k.to_s == key }

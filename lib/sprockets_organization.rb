@@ -1,6 +1,10 @@
 module SprocketsOrganization
   def routes(map, method = :resource)
-    map.send(method, :sprockets)
+    if method == :resource
+      map.resource(:sprockets, :only => :show)
+    elsif method == :resources
+      map.resources(:sprockets, :only => [:index, :show])
+    end
   end
   
   def sprocket(name)
