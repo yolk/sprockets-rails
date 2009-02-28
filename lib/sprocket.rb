@@ -9,6 +9,8 @@ class Sprocket
     end
   end
 
+  protected
+
   def configuration
     @configuration || {}
   end
