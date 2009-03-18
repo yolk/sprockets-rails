@@ -7,7 +7,7 @@ The `sprockets-rails` plugin sets up your Rails application for use with [Sprock
 
 To source Sprockets' JavaScript concatenation from your HTML templates, use the provided `sprockets_include_tag` helper.
 
-`sprockets-rails` also includes a set of Rake tasks for generating the concatenation (`rake sprockets:install_script`) and installing provided assets (`rake sprockets:install_assets`). Run `sprockets:install_assets` any time you add or update a Sprockets plugin in your application. Add `sprockets:install_script` as a [Capistrano](http://www.capify.org/) post-deploy hook to generate the Sprockets concatenation on your servers automatically at deploy time.
+`sprockets-rails` also includes a set of Rake tasks for generating the concatenation (`rake sprockets:install_script`) and installing provided assets (`rake sprockets:install_assets`). Run `sprockets:install_assets` any time you add or update a Sprockets plugin in your application. Add `after "deploy:update_code", "sprockets:install_script"` as a [Capistrano](http://www.capify.org/) post-deploy hook to generate the Sprockets concatenation on your servers automatically at deploy time.
 
 Here's a walkthrough of the installation process:
 
