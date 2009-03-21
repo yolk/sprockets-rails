@@ -2,6 +2,7 @@ class Sprocket
   attr_reader :group
   
   def initialize(group='default')
+    group = 'default' if group.nil?
     @group = group.to_sym
   end
   
