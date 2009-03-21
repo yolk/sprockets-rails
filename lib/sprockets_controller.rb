@@ -6,7 +6,7 @@ class SprocketsController < ActionController::Base
   end
 
   def show
-    sprocket = SprocketsApplication.sprocket(params[:id])
+    sprocket = Sprocket.new(params[:id])
     render :text => sprocket.source, :content_type => "text/javascript"
   end
 end

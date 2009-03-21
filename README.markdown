@@ -54,6 +54,8 @@ Once `sprockets-rails` is installed, you can check out Sprockets plugins into th
 
 2. Adjust your HTML templates to call `<%= sprockets_include_tag(:config_name) %>` with the name of the configuration you wish to use.
 
+3. Concatenations are located at `RAILS_ROOT/sprockets/<config_name>.js`, except for the default configuration, whose concatenation located at `RAILS_ROOT/sprockets.js`.
+
 ## License
 
 Copyright &copy; 2009 Sam Stephenson.
