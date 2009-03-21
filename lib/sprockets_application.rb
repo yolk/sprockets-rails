@@ -1,5 +1,5 @@
 module SprocketsApplication
-  def routes(map)
+  def self.routes(map)
     map.resources(:sprockets, :only => [:index, :show])
   end
 end
