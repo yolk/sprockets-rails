@@ -52,15 +52,7 @@ Once `sprockets-rails` is installed, you can check out Sprockets plugins into th
           :source_files:
             - app/javascripts/special.js
 
-2. Edit your `config/routes.rb` file to use plural resources for `SprocketsController`:
-
-        ActionController::Routing::Routes.draw do |map|
-          # Add the following line:
-          SprocketsApplication.routes(map, :resources)
-          ...
-        end
-
-3. Adjust your HTML templates to call `<%= sprockets_include_tag(:config_name) %>` with the name of the configuration you wish to use.
+2. Adjust your HTML templates to call `<%= sprockets_include_tag(:config_name) %>` with the name of the configuration you wish to use.
 
 ## License
 

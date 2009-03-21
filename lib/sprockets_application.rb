@@ -1,15 +1,9 @@
 module SprocketsApplication
-  extend SprocketsMechanism
-  
-  def routes(map, method = :resource)
-    if method == :resource
-      map.resource(:sprockets, :only => :show)
-    elsif method == :resources
-      map.resources(:sprockets, :only => [:index, :show])
-    end
+  def routes(map)
+    map.resources(:sprockets, :only => [:index, :show])
   end
   
-  def sprocket(name)
+  def sprocket(name=nil)
     Sprocket.new(name)
   end
 end
