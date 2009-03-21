@@ -1,3 +1,5 @@
+require "fileutils"
+
 class Sprocket
   attr_reader :group
   
@@ -11,6 +13,8 @@ class Sprocket
   end
   
   def install_script
+    # /public/sprocktes might not exist yet, and sprockets-1.0.2 throws an exception
+    FileUtils.mkdir_p(File.dirname(asset_path))
     concatenation.save_to(asset_path)
   end
   
@@ -18,11 +22,17 @@ class Sprocket
     secretary.install_assets
   end
   
-  def self.configurations
-    @conf ||= YAML.load(IO.read(configuration_path)) || {}
-    @conf.keys
+  class << self
+    def configurations
+      @conf ||= YAML.load(IO.read(Sprocket.configuration_path)) || {}
+      @conf.keys
+    end
+  
+    def configuration_path
+      File.join(Rails.root, "config", "sprockets.yml")
+    end
   end
-
+  
   protected
     def secretary
       @secretary ||= Sprockets::Secretary.new(configuration.merge(:root => Rails.root))
@@ -33,7 +43,7 @@ class Sprocket
     end
     
     def load_configuration
-      @conf ||= YAML.load(IO.read(configuration_path)) || {}
+      @conf ||= YAML.load(IO.read(Sprocket.configuration_path)) || {}
       if @conf[group]
         @conf[group]
       else
@@ -44,10 +54,6 @@ class Sprocket
     def concatenation
       secretary.reset! unless source_is_unchanged?
       secretary.concatenation
-    end
-    
-    def configuration_path
-      File.join(Rails.root, "config", "sprockets.yml")
     end
     
     def asset_path
