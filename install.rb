@@ -1,13 +1,13 @@
 require "fileutils"
 include FileUtils::Verbose
 
-RAILS_ROOT = File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "..")) unless defined?(RAILS_ROOT)
+rails_root = defined?(Rails) ? Rails.root : File.expand_path(File.join(File.dirname(__FILE__), "..", "..", ".."))
 
-mkdir_p File.join(RAILS_ROOT, "vendor", "sprockets")
-mkdir_p File.join(RAILS_ROOT, "app", "javascripts")
-touch   File.join(RAILS_ROOT, "app", "javascripts", "application.js")
+mkdir_p File.join(rails_root, "vendor", "sprockets")
+mkdir_p File.join(rails_root, "app", "javascripts")
+touch   File.join(rails_root, "app", "javascripts", "application.js")
 
-unless File.exists?(File.join(RAILS_ROOT, "config", "sprockets.yml"))
+unless File.exists?(File.join(rails_root, "config", "sprockets.yml"))
 cp      File.join(File.dirname(__FILE__), "config", "sprockets.yml"), 
-        File.join(RAILS_ROOT, "config")
+        File.join(rails_root, "config")
 end
